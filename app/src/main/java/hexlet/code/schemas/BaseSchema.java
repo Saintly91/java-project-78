@@ -1,20 +1,19 @@
 package hexlet.code.schemas;
 
-public class BaseSchema <T>{
-    protected boolean required;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.function.Predicate;
 
-    public BaseSchema<T> required() {
-        this.required = true;
-        return this;
+public abstract class BaseSchema <T>{
+    private final Map<String, Predicate<T>> rules = new LinkedHashMap<>();
+    protected void addRule(String name, Predicate<T> rule) {
+        rules.put(name, rule);
     }
 
     public boolean isValid(T value) {
-        if (value == null && required) {
-            return false;
-        }
-
-        return true;
+        return rules.values()
+                .stream()
+                .allMatch(rule -> rule.test(value));
     }
-
 
 }
