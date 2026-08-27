@@ -65,7 +65,7 @@ public class NumberSchemaTest {
     }
 
     @Test
-    void testRangesReplacesPreviousValue () {
+    void testRangeReplacesPreviousValue () {
         var v = new Validator();
         var number = v.number();
 

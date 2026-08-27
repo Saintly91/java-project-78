@@ -17,7 +17,7 @@ public class ValidatorTest {
     }
 
     @Test
-    void testValidateString() {
+    void testValidateNumber() {
         var v = new Validator();
         var number = v.number();
 

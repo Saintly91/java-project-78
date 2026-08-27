@@ -69,12 +69,6 @@ public class StringSchemaTest {
 
         schema.contains("whatthe");
         assertFalse(schema.isValid("what does the fox say"));
-
-        //Проверяем из задания schema.contains("whatthe")
-        // .isValid("what does the fox say"); // false
-        //schema.isValid("what does the fox say"); // false
-        // Здесь уже false, так как ограничение contains("whatthe")
-        // заменило собой прежнее contains("what")
         assertFalse(schema.isValid("what does the fox say"));
     }
 
