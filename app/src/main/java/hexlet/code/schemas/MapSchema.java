@@ -3,17 +3,14 @@ package hexlet.code.schemas;
 import java.util.Map;
 
 public class MapSchema extends BaseSchema <Map<?, ?>> {
+
     public MapSchema required() {
-        addRule("required",
-                map -> map != null
-        );
+        requiredFlag = true;
         return this;
     }
-
     public MapSchema sizeof(int value) {
         addRule("sizeof",
-                map -> map == null
-                || map.size() == value
+                map -> map.size() == value
         );
         return this;
     }
@@ -21,8 +18,7 @@ public class MapSchema extends BaseSchema <Map<?, ?>> {
     public  MapSchema shape(Map <String, BaseSchema<String>> schemas) {
         addRule(
                 "shape",
-                map -> map == null
-                        || schemas.entrySet()
+                map -> schemas.entrySet()
                         .stream()
                         .allMatch(entry -> {
                             String value = (String) map.get(entry.getKey());

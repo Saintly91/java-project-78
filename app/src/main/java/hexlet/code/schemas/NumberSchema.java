@@ -3,24 +3,20 @@ package hexlet.code.schemas;
 public class NumberSchema extends BaseSchema<Integer> {
 
     public NumberSchema required() {
-        addRule("required",
-                number -> number != null
-        );
+        requiredFlag = true;
         return this;
     }
 
     public NumberSchema positive() {
         addRule("positive",
-                number -> number == null
-                || number > 0
+                number -> number > 0
         );
         return this;
     }
 
     public NumberSchema range(int minValue, int maxValue) {
         addRule("range",
-                number -> number == null
-                || (number >= minValue && number <= maxValue)
+                number -> (number >= minValue && number <= maxValue)
         );
         return this;
     }
