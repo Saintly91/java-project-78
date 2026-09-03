@@ -15,7 +15,7 @@ public abstract class BaseSchema <T>{
 
     public boolean isValid(T value) {
 
-        if (value == null) {
+        if (value == null || isValueEmpty(value)) {
             return !requiredFlag;
         }
         return rules.values()
@@ -23,4 +23,10 @@ public abstract class BaseSchema <T>{
                 .allMatch(rule -> rule.test(value));
     }
 
+    protected boolean isValueEmpty(T value) {
+        if (value instanceof String) {
+            return value.toString().isEmpty();
+        }
+        return false;
+    }
 }
