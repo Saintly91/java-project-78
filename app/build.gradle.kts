@@ -1,5 +1,7 @@
 plugins {
     id("java")
+    id("com.diffplug.spotless") version "8.10.1"
+    id("jacoco")
 }
 
 group = "hexlet.code"
@@ -17,4 +19,20 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+    java {
+        googleJavaFormat()
+    }
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        xml.required.set(true)
+        csv.required.set(false)
+        html.required.set(true)
+    }
 }
