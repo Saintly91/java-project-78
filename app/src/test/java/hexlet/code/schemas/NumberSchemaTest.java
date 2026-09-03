@@ -1,79 +1,80 @@
 package hexlet.code.schemas;
 
-import hexlet.code.Validator;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import hexlet.code.Validator;
+import org.junit.jupiter.api.Test;
+
 public class NumberSchemaTest {
 
-    @Test
-    void testDefaultNumberValidation() {
-        var v = new Validator();
-        var number = v.number();
+  @Test
+  void testDefaultNumberValidation() {
+    var v = new Validator();
+    var number = v.number();
 
-        assertTrue(number.isValid(null));
-        assertTrue(number.isValid(5));
-    }
+    assertTrue(number.isValid(null));
+    assertTrue(number.isValid(5));
+  }
 
-    @Test
-    void testRequiredMakesNullNumberInvalid() {
-        var v = new Validator();
-        var number = v.number();
+  @Test
+  void testRequiredMakesNullNumberInvalid() {
+    var v = new Validator();
+    var number = v.number();
 
-        number.required();
+    number.required();
 
-        assertFalse(number.isValid(null));
-        assertTrue(number.isValid(5));
-    }
+    assertFalse(number.isValid(null));
+    assertTrue(number.isValid(5));
+  }
 
-    @Test
-    void testPositiveNumberValidation() {
-        var v = new Validator();
-        var number = v.number();
+  @Test
+  void testPositiveNumberValidation() {
+    var v = new Validator();
+    var number = v.number();
 
-        number.positive();
+    number.positive();
 
-        assertTrue(number.isValid(null));
-        assertTrue(number.isValid(5));
-        assertFalse(number.isValid(-1));
-        assertFalse(number.isValid(0));
-    }
+    assertTrue(number.isValid(null));
+    assertTrue(number.isValid(5));
+    assertFalse(number.isValid(-1));
+    assertFalse(number.isValid(0));
+  }
 
-    @Test
-    void testRangeNumberValidation() {
-        var v = new Validator();
-        var number = v.number();
+  @Test
+  void testRangeNumberValidation() {
+    var v = new Validator();
+    var number = v.number();
 
-        number.range(5, 10);
+    number.range(5, 10);
 
-        assertTrue(number.isValid(5));
-        assertTrue(number.isValid(10));
-        assertFalse(number.isValid(4));
-        assertFalse(number.isValid(11));
-    }
-    @Test
-    void testAllRestrictionsWorkTogether() {
-        var v = new Validator();
-        var number = v.number();
+    assertTrue(number.isValid(5));
+    assertTrue(number.isValid(10));
+    assertFalse(number.isValid(4));
+    assertFalse(number.isValid(11));
+  }
 
-        number.positive().range(-2, 5);
+  @Test
+  void testAllRestrictionsWorkTogether() {
+    var v = new Validator();
+    var number = v.number();
 
-        assertFalse(number.isValid(-2));
-        assertTrue(number.isValid(5));
-    }
+    number.positive().range(-2, 5);
 
-    @Test
-    void testRangeReplacesPreviousValue () {
-        var v = new Validator();
-        var number = v.number();
+    assertFalse(number.isValid(-2));
+    assertTrue(number.isValid(5));
+  }
 
-        number.range(5, 10).range(6, 9);
+  @Test
+  void testRangeReplacesPreviousValue() {
+    var v = new Validator();
+    var number = v.number();
 
-        assertFalse(number.isValid(5));
-        assertFalse(number.isValid(10));
-        assertTrue(number.isValid(6));
-        assertTrue(number.isValid(9));
-    }
+    number.range(5, 10).range(6, 9);
+
+    assertFalse(number.isValid(5));
+    assertFalse(number.isValid(10));
+    assertTrue(number.isValid(6));
+    assertTrue(number.isValid(9));
+  }
 }
