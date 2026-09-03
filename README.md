@@ -1,5 +1,6 @@
 ## 🛠️ Статус проекта и качество кода
 [![Actions Status](https://github.com/Saintly91/java-project-78/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Saintly91/java-project-78/actions)
+[![CI](https://github.com/Saintly91/java-project-78/actions/workflows/build.yml/badge.svg)](https://github.com/Saintly91/java-project-78/actions/workflows/build.yml)
 # Проект «Валидатор данных»
 **Валидатор данных** - библиотека, с помощью которой можно проверять корректность любых данных. Подобных библиотек множество в каждом языке, так как практически все программы работают с внешними данными, которые нужно проверять на корректность. В первую очередь речь идет про данные форм заполняемых пользователями.
 
